@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+	<rect width="1200" height="630" fill="#07111D" />
+	<circle cx="940" cy="120" r="180" fill="#6FC6FF" fill-opacity="0.16" />
+	<circle cx="180" cy="520" r="220" fill="#FFB06B" fill-opacity="0.14" />
+	<rect x="72" y="72" width="1056" height="486" rx="32" fill="#0D1A2D" stroke="rgba(255,255,255,0.12)" />
+	<text x="120" y="210" fill="#FFB06B" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">ASTRO + CLOUDFLARE TEMPLATE</text>
+	<text x="120" y="310" fill="#F5F7FB" font-family="Arial, sans-serif" font-size="72" font-weight="700">Launch the page before</text>
+	<text x="120" y="392" fill="#F5F7FB" font-family="Arial, sans-serif" font-size="72" font-weight="700">the product is fully ready.</text>
+	<text x="120" y="470" fill="#A8B5C8" font-family="Arial, sans-serif" font-size="32">Landing page starter with D1 signup capture and SEO scaffolding.</text>
+</svg>

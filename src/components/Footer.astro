@@ -1,0 +1,88 @@
+---
+import { landingPageContent, siteConfig } from "../site-config";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container site-footer__inner">
+		<div>
+			<p class="site-footer__eyebrow">{siteConfig.tagline}</p>
+			<h2>{siteConfig.name}</h2>
+			<p>{siteConfig.footerNote}</p>
+		</div>
+
+		<nav aria-label="Footer">
+			{landingPageContent.footerLinks.map((link) => (
+				<a href={link.href}>{link.label}</a>
+			))}
+		</nav>
+	</div>
+
+	<div class="container site-footer__meta">
+		<span>© {currentYear} {siteConfig.companyName}</span>
+		<span>{siteConfig.contactEmail}</span>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		padding: 4rem 0 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.site-footer__inner {
+		display: grid;
+		grid-template-columns: 1.4fr minmax(0, 0.7fr);
+		gap: 2rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.site-footer__eyebrow {
+		margin-bottom: 0.8rem;
+		color: var(--color-accent);
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.site-footer__inner h2 {
+		margin-bottom: 0.85rem;
+		font-size: clamp(1.6rem, 3vw, 2.2rem);
+	}
+
+	.site-footer__inner p,
+	.site-footer__meta {
+		color: var(--color-muted);
+	}
+
+	.site-footer nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		align-items: flex-start;
+		justify-content: center;
+	}
+
+	.site-footer nav a {
+		text-decoration: none;
+	}
+
+	.site-footer__meta {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		font-size: 0.92rem;
+	}
+
+	@media (max-width: 720px) {
+		.site-footer__inner,
+		.site-footer__meta {
+			grid-template-columns: 1fr;
+			display: grid;
+		}
+	}
+</style>

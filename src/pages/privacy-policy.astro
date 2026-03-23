@@ -1,0 +1,123 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { buildSiteSchemas, siteConfig } from "../site-config";
+
+export const prerender = true;
+
+const pageTitle = `${siteConfig.name} | Privacy policy`;
+const pageDescription =
+	"Placeholder privacy policy for a landing page collecting email signups. Replace the company, contact, and retention details before launching.";
+const structuredData = buildSiteSchemas(pageTitle, pageDescription, "/privacy-policy/");
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={pageTitle} description={pageDescription} structuredData={structuredData} />
+	</head>
+	<body>
+		<main class="privacy-shell">
+			<div class="privacy-card panel">
+				<p class="eyebrow">Privacy policy</p>
+				<h1>Replace this with your real launch privacy policy before going live.</h1>
+				<p>
+					This template assumes a simple email signup flow. The placeholder text below gives you a minimum
+					structure for explaining what is collected, why it is stored, and how people can contact you.
+				</p>
+
+				<h2>Data collected</h2>
+				<ul>
+					<li>Email address submitted through the signup form.</li>
+					<li>Operational metadata such as submission timestamps and repeat submissions from the same email.</li>
+				</ul>
+
+				<h2>Purpose</h2>
+				<ul>
+					<li>To manage launch updates, early access requests, or waitlist communication.</li>
+					<li>To prevent duplicate records and basic form abuse.</li>
+				</ul>
+
+				<h2>Retention and sharing</h2>
+				<p>
+					Update this section with your actual retention window, deletion process, and whether any third-party
+					tools receive signup data. If you do not share the data, say that directly.
+				</p>
+
+				<h2>Data controller</h2>
+				<p>
+					Replace <strong>{siteConfig.companyName}</strong> with your legal entity or trading name and provide a
+					working contact address.
+				</p>
+
+				<h2>Contact</h2>
+				<p>
+					Questions or deletion requests should go to
+					<a href={`mailto:${siteConfig.privacyContactLabel}`}>{siteConfig.privacyContactLabel}</a>.
+				</p>
+
+				<p class="back-link">
+					<a href="/">Return to the homepage</a>
+				</p>
+			</div>
+		</main>
+	</body>
+</html>
+
+<style>
+	:global(body) {
+		min-height: 100vh;
+	}
+
+	.privacy-shell {
+		min-height: 100vh;
+		display: grid;
+		place-items: center;
+		padding: 3rem 1.5rem;
+	}
+
+	.privacy-card {
+		width: min(100%, 48rem);
+		padding: 2.5rem;
+		border-radius: 1.25rem;
+	}
+
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		color: var(--color-accent);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		font-family: var(--font-mono);
+	}
+
+	h1 {
+		margin: 0 0 1rem;
+		font-size: clamp(2.2rem, 6vw, 3.4rem);
+		line-height: 1.08;
+	}
+
+	h2 {
+		margin-top: 2rem;
+		font-size: 1.15rem;
+	}
+
+	p,
+	li {
+		color: var(--color-muted);
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	ul {
+		padding-left: 1.25rem;
+	}
+
+	a {
+		color: var(--color-accent-cool);
+	}
+
+	.back-link {
+		margin-top: 2rem;
+	}
+</style>

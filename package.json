@@ -1,0 +1,37 @@
+{
+	"name": "astro-cloudflare-landing-page-template",
+	"description": "Launch a landing page on Astro and Cloudflare Workers with a D1-backed signup form.",
+	"cloudflare": {
+		"label": "Astro Landing Page Starter",
+		"products": [
+			"Workers"
+		],
+		"categories": [],
+		"publish": true
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "12.6.12",
+		"@astrojs/sitemap": "3.6.1",
+		"astro": "5.16.9",
+		"typescript": "5.9.3"
+	},
+	"devDependencies": {
+		"@types/node": "^25.5.0",
+		"wrangler": "^4.76.0"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"private": true,
+	"scripts": {
+		"astro": "node ./scripts/astro-cli.mjs",
+		"build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && node ./scripts/astro-cli.mjs build",
+		"cf-typegen": "node ./node_modules/wrangler/bin/wrangler.js types",
+		"check": "npm run build && node ./node_modules/typescript/lib/tsc.js --noEmit && node ./node_modules/wrangler/bin/wrangler.js deploy --dry-run",
+		"deploy": "node ./node_modules/wrangler/bin/wrangler.js deploy",
+		"dev": "node ./scripts/astro-cli.mjs dev",
+		"preview": "npm run build && node ./node_modules/wrangler/bin/wrangler.js dev",
+		"test": "node --experimental-strip-types --test tests/**/*.test.ts"
+	},
+	"type": "module"
+}

@@ -1,0 +1,7 @@
+# Optional Wrangler local overrides.
+# Copy to .dev.vars when you want to override the placeholder notification values
+# without editing wrangler.jsonc.
+
+WAITLIST_NOTIFICATION_TO=owner@example.com
+WAITLIST_NOTIFICATION_FROM=noreply@example.com
+WAITLIST_NOTIFICATION_SENDER_NAME=Landing Page Template

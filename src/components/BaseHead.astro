@@ -1,0 +1,61 @@
+---
+import "../styles/global.css";
+import { getDefaultRobots, getPublicSiteUrl, siteConfig } from "../site-config";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	robots?: string;
+	structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const siteURL = Astro.site ?? getPublicSiteUrl();
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+
+const {
+	title,
+	description,
+	image = siteConfig.socialImagePath,
+	robots = getDefaultRobots(),
+	structuredData,
+} = Astro.props;
+const socialImageURL = image ? new URL(image, siteURL) : undefined;
+const structuredDataItems = structuredData
+	? Array.isArray(structuredData)
+		? structuredData
+		: [structuredData]
+	: [];
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href={siteConfig.faviconPath} />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{socialImageURL && <meta property="og:image" content={socialImageURL} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{socialImageURL && <meta property="twitter:image" content={socialImageURL} />}
+
+{structuredDataItems.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}

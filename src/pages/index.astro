@@ -1,0 +1,549 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { buildSiteSchemas, landingPageContent, siteConfig } from "../site-config";
+
+export const prerender = true;
+
+const pageTitle = siteConfig.defaultTitle;
+const pageDescription = siteConfig.defaultDescription;
+const structuredData = buildSiteSchemas(pageTitle, pageDescription, "/");
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={pageTitle} description={pageDescription} structuredData={structuredData} />
+	</head>
+	<body>
+		<SiteHeader isHome={true} />
+
+		<main id="top">
+			<section class="hero">
+				<div class="container hero__grid">
+					<div class="hero__copy">
+						<p class="section-eyebrow">{landingPageContent.hero.eyebrow}</p>
+						<h1>{landingPageContent.hero.title}</h1>
+						<p class="hero__lede">{landingPageContent.hero.description}</p>
+
+						<div class="hero__actions">
+							<a class="button button--primary" href="#signup">{siteConfig.primaryCtaLabel}</a>
+							<a class="button button--secondary" href="#why-it-works">{siteConfig.secondaryCtaLabel}</a>
+						</div>
+
+						<ul class="hero__highlights" aria-label="Template highlights">
+							{landingPageContent.hero.highlights.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+
+					<div class="hero__preview panel" aria-label="Landing page starter preview">
+						<div class="preview-card preview-card--accent">
+							<p>Template includes</p>
+							<h2>Headline, proof, FAQ, CTA, and privacy baseline</h2>
+							<span>Replace placeholder copy with your offer and proof.</span>
+						</div>
+						<div class="preview-stack">
+							<div class="preview-card">
+								<p>Signup API</p>
+								<h3>D1-backed capture</h3>
+								<span>Duplicate-safe submissions and optional email alerts.</span>
+							</div>
+							<div class="preview-card">
+								<p>SEO scaffolding</p>
+								<h3>Canonical, OG, sitemap</h3>
+								<span>Ready to edit without pulling apart a larger content system.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="why-it-works">
+				<div class="container">
+					<p class="section-eyebrow">Why it works</p>
+					<div class="section-heading">
+						<h2>Built for teams that need a launch-ready marketing surface, not a generic starter full of leftovers.</h2>
+						<p>
+							Use the structure as-is, then replace the placeholder messaging with your own audience, proof,
+							and call to action.
+						</p>
+					</div>
+
+					<div class="card-grid card-grid--three">
+						{landingPageContent.problemCards.map((card) => (
+							<article class="info-card panel">
+								<h3>{card.title}</h3>
+								<p>{card.description}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section section--alt" id="what-you-get">
+				<div class="container">
+					<p class="section-eyebrow">What you get</p>
+					<div class="section-heading">
+						<h2>A narrow starter with the parts most landing pages need first.</h2>
+						<p>
+							No demo blog. No placeholder articles. No second product. Just the essentials for shipping a clean
+							page and collecting interest.
+						</p>
+					</div>
+
+					<div class="card-grid card-grid--two">
+						{landingPageContent.featureCards.map((card) => (
+							<article class="feature-card panel">
+								<h3>{card.title}</h3>
+								<p>{card.description}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="container">
+					<p class="section-eyebrow">How to use it</p>
+					<div class="steps">
+						{landingPageContent.processSteps.map((step) => (
+							<article class="step panel">
+								<div class="step__label">{step.label}</div>
+								<h3>{step.title}</h3>
+								<p>{step.description}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section section--alt">
+				<div class="container">
+					<p class="section-eyebrow">Proof placeholders</p>
+					<div class="section-heading">
+						<h2>Reserve space for trust signals now, then swap them in when they exist.</h2>
+						<p>
+							This section is intentionally generic so the template nudges you to add real evidence instead of
+							pretend credibility.
+						</p>
+					</div>
+
+					<div class="card-grid card-grid--three">
+						{landingPageContent.socialProofCards.map((card) => (
+							<article class="proof-card panel">
+								<h3>{card.title}</h3>
+								<p>{card.description}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="faq">
+				<div class="container faq-layout">
+					<div class="faq-intro">
+						<p class="section-eyebrow">FAQ</p>
+						<h2>Answer the questions that slow down signups.</h2>
+						<p>
+							Treat this as a placeholder structure. Replace these answers with constraints, scope, rollout
+							timing, or pricing guidance specific to your product.
+						</p>
+					</div>
+
+					<div class="faq-list">
+						{landingPageContent.faqItems.map((item) => (
+							<details class="faq-item panel">
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="signup">
+				<div class="container">
+					<div class="signup panel">
+						<div class="signup__copy">
+							<p class="section-eyebrow">Call to action</p>
+							<h2>Capture interest before the full product is built.</h2>
+							<p>
+								Use this form for a waitlist, early access request, pilot signup, or launch notification list.
+								Only the email field is required by default.
+							</p>
+							<p class="signup__note">
+								Update the privacy copy, sender details, and contact information before deploying publicly.
+							</p>
+						</div>
+
+						<form class="signup-form" data-waitlist-form>
+							<label>
+								<span>Email</span>
+								<input type="email" name="email" autocomplete="email" required placeholder="name@company.com" />
+							</label>
+
+							<label class="signup-form__honeypot" aria-hidden="true" tabindex="-1">
+								<span>Website</span>
+								<input type="text" name="website" autocomplete="off" tabindex="-1" />
+							</label>
+
+							<button class="button button--primary" type="submit">{siteConfig.primaryCtaLabel}</button>
+							<p class="signup-form__meta">
+								By submitting, you agree to your details being stored for launch communication. See the
+								<a href="/privacy-policy/">privacy policy</a>.
+							</p>
+							<p class="signup-form__message" data-form-message aria-live="polite"></p>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+
+		<script is:inline>
+			const form = document.querySelector("[data-waitlist-form]");
+			const message = document.querySelector("[data-form-message]");
+
+			if (form instanceof HTMLFormElement && message instanceof HTMLElement) {
+				form.addEventListener("submit", async (event) => {
+					event.preventDefault();
+					message.textContent = "";
+					message.dataset.state = "idle";
+
+					const submitter = form.querySelector('button[type="submit"]');
+					if (submitter instanceof HTMLButtonElement) {
+						submitter.disabled = true;
+					}
+
+					try {
+						const response = await fetch("/api/waitlist", {
+							method: "POST",
+							body: new FormData(form),
+						});
+						const payload = await response.json();
+
+						message.textContent = payload.message || "Thanks for signing up.";
+						message.dataset.state = payload.ok ? "success" : "error";
+
+						if (payload.ok) {
+							form.reset();
+						}
+					} catch (error) {
+						console.error(error);
+						message.textContent = "Something went wrong. Please try again in a moment.";
+						message.dataset.state = "error";
+					} finally {
+						if (submitter instanceof HTMLButtonElement) {
+							submitter.disabled = false;
+						}
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	.hero,
+	.section {
+		padding: 4.5rem 0;
+	}
+
+	.hero {
+		padding-top: 3rem;
+	}
+
+	.hero__grid,
+	.faq-layout,
+	.signup {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.hero__grid,
+	.signup {
+		grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+		align-items: center;
+	}
+
+	.hero h1 {
+		max-width: 12ch;
+		font-size: clamp(3.2rem, 8vw, 6rem);
+	}
+
+	.hero__lede,
+	.section-heading p,
+	.faq-intro p,
+	.signup__copy p,
+	.info-card p,
+	.feature-card p,
+	.step p,
+	.proof-card p {
+		color: var(--color-muted);
+	}
+
+	.hero__lede {
+		max-width: 58ch;
+		margin-top: 1.3rem;
+		font-size: 1.08rem;
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.9rem;
+		margin: 2rem 0 1.5rem;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.95rem 1.35rem;
+		border-radius: 999px;
+		border: 1px solid transparent;
+		font-weight: 700;
+		text-decoration: none;
+		cursor: pointer;
+		transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+	}
+
+	.button:hover,
+	.button:focus-visible {
+		transform: translateY(-1px);
+	}
+
+	.button--primary {
+		background: linear-gradient(135deg, var(--color-accent), #ffd0a7);
+		color: #17202f;
+	}
+
+	.button--secondary {
+		border-color: rgba(255, 255, 255, 0.14);
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.hero__highlights {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		padding: 0;
+		list-style: none;
+	}
+
+	.hero__highlights li {
+		padding: 0.45rem 0.8rem;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		font-size: 0.92rem;
+	}
+
+	.hero__preview {
+		padding: 1.25rem;
+		border-radius: 1.6rem;
+	}
+
+	.preview-card {
+		padding: 1.25rem;
+		border-radius: 1.2rem;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.preview-card--accent {
+		margin-bottom: 1rem;
+		background:
+			linear-gradient(160deg, rgba(255, 176, 107, 0.2), rgba(111, 198, 255, 0.18)),
+			rgba(255, 255, 255, 0.04);
+	}
+
+	.preview-card p,
+	.step__label {
+		margin-bottom: 0.75rem;
+		color: var(--color-accent);
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.preview-card h2,
+	.preview-card h3,
+	.section-heading h2,
+	.faq-intro h2,
+	.signup h2 {
+		font-size: clamp(2rem, 4vw, 3.2rem);
+	}
+
+	.preview-card h3 {
+		font-size: 1.4rem;
+	}
+
+	.preview-card span {
+		display: block;
+		margin-top: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	.preview-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.section--alt {
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.section-heading {
+		display: grid;
+		gap: 0.8rem;
+		max-width: 70ch;
+		margin-bottom: 2rem;
+	}
+
+	.section-heading h2 {
+		font-size: clamp(2.1rem, 4vw, 3.4rem);
+	}
+
+	.card-grid,
+	.steps {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.card-grid--three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.card-grid--two {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.info-card,
+	.feature-card,
+	.step,
+	.proof-card,
+	.faq-item,
+	.signup {
+		border-radius: 1.4rem;
+	}
+
+	.info-card,
+	.feature-card,
+	.step,
+	.proof-card {
+		padding: 1.4rem;
+	}
+
+	.info-card h3,
+	.feature-card h3,
+	.step h3,
+	.proof-card h3 {
+		margin-bottom: 0.8rem;
+		font-size: 1.25rem;
+	}
+
+	.steps {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.faq-layout {
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		align-items: start;
+	}
+
+	.faq-list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.faq-item {
+		padding: 1.2rem 1.3rem;
+	}
+
+	.faq-item summary {
+		cursor: pointer;
+		font-size: 1.08rem;
+		font-weight: 700;
+		list-style: none;
+	}
+
+	.faq-item summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-item p {
+		margin-top: 0.9rem;
+		color: var(--color-muted);
+	}
+
+	.signup {
+		padding: 1.5rem;
+	}
+
+	.signup__note {
+		color: var(--color-success);
+	}
+
+	.signup-form {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.signup-form label span {
+		display: block;
+		margin-bottom: 0.4rem;
+		font-size: 0.92rem;
+		font-weight: 700;
+	}
+
+	.signup-form input {
+		width: 100%;
+		padding: 0.95rem 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 1rem;
+		background: rgba(255, 255, 255, 0.04);
+		color: var(--color-text);
+	}
+
+	.signup-form input::placeholder {
+		color: rgba(168, 181, 200, 0.75);
+	}
+
+	.signup-form__honeypot {
+		position: absolute;
+		left: -9999px;
+	}
+
+	.signup-form__meta,
+	.signup-form__message {
+		font-size: 0.92rem;
+		color: var(--color-muted);
+	}
+
+	.signup-form__message[data-state="success"] {
+		color: var(--color-success);
+	}
+
+	.signup-form__message[data-state="error"] {
+		color: #ffb4b4;
+	}
+
+	@media (max-width: 960px) {
+		.hero__grid,
+		.card-grid--three,
+		.steps,
+		.faq-layout,
+		.signup,
+		.card-grid--two {
+			grid-template-columns: 1fr;
+		}
+
+		.hero h1 {
+			max-width: 100%;
+		}
+	}
+</style>

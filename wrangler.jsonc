@@ -1,0 +1,35 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	// Replace with your Worker name before deploying.
+	"name": "landing-page-template",
+	"workers_dev": true,
+	"compatibility_date": "2026-03-23",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "./dist/_worker.js/index.js",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS"
+	},
+	"d1_databases": [
+		{
+			"binding": "WAITLIST_DB",
+			"database_name": "landing-page-waitlist",
+			"database_id": "00000000-0000-0000-0000-000000000000",
+			"preview_database_id": "00000000-0000-0000-0000-000000000000"
+		}
+	],
+	"send_email": [
+		{
+			"name": "WAITLIST_NOTIFICATION_EMAIL"
+		}
+	],
+	"vars": {
+		"WAITLIST_NOTIFICATION_TO": "owner@example.com",
+		"WAITLIST_NOTIFICATION_FROM": "noreply@example.com",
+		"WAITLIST_NOTIFICATION_SENDER_NAME": "Landing Page Template"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true
+}
